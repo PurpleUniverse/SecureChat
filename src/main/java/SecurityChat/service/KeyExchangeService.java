@@ -1,7 +1,6 @@
-package service;
+package SecurityChat.service;
 
-import model.User;
-import util.CryptoUtils;
+import SecurityChat.model.User;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.KeyAgreement;
@@ -9,7 +8,6 @@ import javax.crypto.SecretKey;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
-import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.HashMap;
 import java.util.Map;

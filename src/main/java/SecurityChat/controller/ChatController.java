@@ -1,11 +1,11 @@
-package controller;
+package SecurityChat.controller;
 
 
-import model.ChatMessage;
-import model.User;
-import repository.UserRepository;
-import service.ChatService;
-import service.KeyExchangeService;
+import SecurityChat.model.ChatMessage;
+import SecurityChat.model.User;
+import SecurityChat.repository.UserRepository;
+import SecurityChat.service.ChatService;
+import SecurityChat.service.KeyExchangeService;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;

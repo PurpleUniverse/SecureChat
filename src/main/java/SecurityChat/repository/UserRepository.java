@@ -1,6 +1,6 @@
-package repository;
+package SecurityChat.repository;
 
-import model.User;
+import SecurityChat.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {

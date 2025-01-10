@@ -1,4 +1,4 @@
-package util;
+package SecurityChat.util;
 
 public class MessageUtils {
     public static boolean constantTimeEquals(byte[] a, byte[] b) {

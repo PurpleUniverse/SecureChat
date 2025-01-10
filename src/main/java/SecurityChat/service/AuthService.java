@@ -1,8 +1,8 @@
-package service;
+package SecurityChat.service;
 
-import model.User;
-import repository.UserRepository;
-import util.SecurityLogger;
+import SecurityChat.model.User;
+import SecurityChat.repository.UserRepository;
+import SecurityChat.util.SecurityLogger;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 

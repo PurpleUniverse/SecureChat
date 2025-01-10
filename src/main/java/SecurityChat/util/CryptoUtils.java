@@ -1,4 +1,4 @@
-package util;
+package SecurityChat.util;
 
 import javax.crypto.Cipher;
 import javax.crypto.Mac;

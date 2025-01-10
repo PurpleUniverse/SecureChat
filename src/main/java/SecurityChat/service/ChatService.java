@@ -1,11 +1,12 @@
-package service;
+package SecurityChat.service;
 
-import model.ChatMessage;
-import model.User;
-import repository.ChatMessageRepository;
-import repository.UserRepository;
-import util.CryptoUtils;
+import SecurityChat.model.ChatMessage;
+import SecurityChat.model.User;
+import SecurityChat.repository.ChatMessageRepository;
+import SecurityChat.repository.UserRepository;
+import SecurityChat.util.CryptoUtils;
 import org.springframework.stereotype.Service;
+import SecurityChat.util.SecurityLogger;
 
 import javax.crypto.SecretKey;
 import java.time.LocalDateTime;
@@ -15,11 +16,16 @@ public class ChatService {
     private final ChatMessageRepository chatMessageRepository;
     private final KeyExchangeService keyExchangeService;
     private final UserRepository userRepository;
+    private final SecurityLogger securityLogger;
 
-    public ChatService(ChatMessageRepository chatMessageRepository, KeyExchangeService keyExchangeService, UserRepository userRepository) {
+    public ChatService(ChatMessageRepository chatMessageRepository,
+                       KeyExchangeService keyExchangeService,
+                       UserRepository userRepository,
+                       SecurityLogger securityLogger) {
         this.chatMessageRepository = chatMessageRepository;
         this.keyExchangeService = keyExchangeService;
         this.userRepository = userRepository;
+        this.securityLogger = securityLogger;
     }
 
     public void sendMessage(User sender, User recipient, String message) {
@@ -36,6 +42,7 @@ public class ChatService {
         chatMessage.setMac(mac);
 
         chatMessageRepository.save(chatMessage);
+        securityLogger.logMessageSent(sender.getUsername(), recipient.getUsername());
     }
 
     public ChatMessage receiveMessage(User user, byte[] encryptedMessage, byte[] mac) {
@@ -45,22 +52,17 @@ public class ChatService {
 
         User senderUser = userRepository.findByUsername(chatMessage.getSender());
         SecretKey sharedSecret = keyExchangeService.generateSharedSecret(senderUser, user);
+
         if (CryptoUtils.verifyMAC(encryptedMessage, mac, sharedSecret)) {
             byte[] decryptedContent = CryptoUtils.decrypt(encryptedMessage, sharedSecret);
             chatMessage.setContent(new String(decryptedContent));
+            securityLogger.logMessageReceived(chatMessage.getSender(), user.getUsername());
         } else {
             chatMessage.setContent("Message integrity check failed");
+            securityLogger.logMessageIntegrityFailure(chatMessage.getSender(), user.getUsername());
         }
 
         return chatMessage;
-    }
-
-    public void storeMessage(ChatMessage chatMessage) {
-        chatMessageRepository.save(chatMessage);
-    }
-
-    public Iterable<ChatMessage> getMessageHistory(User user) {
-        return chatMessageRepository.findAll();
     }
 }
 
