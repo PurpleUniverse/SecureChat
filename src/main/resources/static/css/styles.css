@@ -4,83 +4,44 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-}
-
 .container {
     max-width: 1200px;
     margin: 20px auto;
     padding: 20px;
 }
 
-/* Login and Register Styles */
-.login-container, .register-container {
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.login-container h2, .register-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-input {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
-}
-
-button {
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-/* Chat App Styles */
 .chat-app {
     display: flex;
     height: 80vh;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
+/* Sidebar styles */
 .sidebar {
     width: 250px;
-    background-color: #f8f9fa;
-    border-right: 1px solid #dee2e6;
+    background: #f5f5f5;
+    border-right: 1px solid #ddd;
     display: flex;
     flex-direction: column;
 }
 
 .user-profile {
     padding: 20px;
-    border-bottom: 1px solid #dee2e6;
+    border-bottom: 1px solid #ddd;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 10px;
+}
+
+.logout-btn {
+    padding: 5px 10px;
+    background: #ff4444;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
 }
 
 .user-list {
@@ -100,14 +61,16 @@ button:hover {
 
 .user-list li {
     padding: 10px;
+    margin: 5px 0;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 5px;
 }
 
 .user-list li:hover {
-    background-color: #e9ecef;
+    background: #e9ecef;
 }
 
+/* Chat main area styles */
 .chat-main {
     flex-grow: 1;
     display: flex;
@@ -116,7 +79,7 @@ button:hover {
 
 .chat-header {
     padding: 20px;
-    border-bottom: 1px solid #dee2e6;
+    border-bottom: 1px solid #ddd;
 }
 
 .chat-messages {
@@ -129,38 +92,46 @@ button:hover {
 }
 
 .message {
-    padding: 10px;
-    border-radius: 8px;
     max-width: 70%;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px 0;
 }
 
 .message.sent {
-    background-color: #dcf8c6;
+    background: #dcf8c6;
     align-self: flex-end;
 }
 
 .message.received {
-    background-color: #e8e8e8;
+    background: #e8e8e8;
     align-self: flex-start;
 }
 
 .chat-input {
     padding: 20px;
-    border-top: 1px solid #dee2e6;
+    border-top: 1px solid #ddd;
     display: flex;
     gap: 10px;
 }
 
 .chat-input input {
     flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
 }
 
 .chat-input button {
     padding: 10px 20px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.message-timestamp {
-    font-size: 12px;
-    color: #666;
-    margin-top: 5px;
+.chat-input button:hover {
+    background: #45a049;
 }

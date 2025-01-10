@@ -1,10 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Home</title>
+    <title>Secure Chat</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 </head>
 <body>
-<h1>Welcome!</h1>
-<p>Click <a th:href="@{/logout}">here</a> to logout.</p>
+<div class="container">
+    <div class="chat-app">
+        <div class="sidebar">
+            <div class="user-profile">
+                <span id="current-user">User</span>
+                <a th:href="@{/logout}" class="logout-btn">Logout</a>
+            </div>
+            <div class="user-list">
+                <h3>Online Users</h3>
+                <ul id="online-users"></ul>
+            </div>
+        </div>
+        <div class="chat-main">
+            <div class="chat-header">
+                <h2>Chatting with: <span id="chat-recipient">Everyone</span></h2>
+            </div>
+            <div class="chat-messages" id="chat-messages"></div>
+            <div class="chat-input">
+                <input type="text" id="message-input" placeholder="Type your message...">
+                <button id="send-button">Send</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/js/app.js}"></script>
 </body>
 </html>
